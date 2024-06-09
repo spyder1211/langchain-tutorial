@@ -9,7 +9,7 @@ model = ChatOpenAI(model="gpt-4o")
 parser = StrOutputParser()
 
 messages = [
-    SystemMessage(content="Translate the following from English into Japnaese"),
+    SystemMessage(content="Translate the following from English into Japanese"),
     HumanMessage(content="hi!"),
 ]
 
