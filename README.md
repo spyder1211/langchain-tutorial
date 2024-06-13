@@ -9,7 +9,7 @@ https://python.langchain.com/v0.2/docs/tutorials/
 ## langserver起動方法
 
 ```sh
-$ python server.py
+$ python LangServe/serve.py
 ```
 
 ## 動作確認方法
