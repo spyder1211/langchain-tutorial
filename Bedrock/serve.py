@@ -7,18 +7,20 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_aws import ChatBedrock
 from langserve import add_routes
 
-# 1. Create prompt template
+# 1. Create prompt template1
 system_template = "与えられた {特徴}　の人物に対して、考察しどんなキャラクターかを箇条書きで列挙してください:"
 prompt_template = ChatPromptTemplate.from_messages([
     ('system', system_template),
     ('user', '名前；{名前}性別：{性別}好きなもの：{好きなもの}嫌いなもの：{嫌いなもの}')
 ])
 
+# 1. Create prompt template2
 system_template = "与えられた{text}から、その人物がどのような個性を持っているか考慮して、その人らしく一言喋ってください:"
 prompt_template2 = ChatPromptTemplate.from_messages([
     ('system', system_template),
     ('user', '{text}')
 ])
+
 # 2. Create model
 model = ChatBedrock(
     region_name='us-east-1',
@@ -40,7 +42,6 @@ app = FastAPI(
 )
 
 # 5. Adding chain route
-
 add_routes(
     app,
     chain,
