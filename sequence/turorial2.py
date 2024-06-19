@@ -15,7 +15,7 @@ chain = prompt | model | StrOutputParser()
 
 analysis_prompt = ChatPromptTemplate.from_template("is this joke funny? {joke}")
 
-composed_chain = {"joke": chain} | analysis_prompt | model | StrOutputParser()
+composed_chain_with_lambda = ( chain | (lambda input: {"joke": input}) | analysis_prompt | model | StrOutputParser() )
 
 app = FastAPI(
     title="LangChain Server",
@@ -25,7 +25,7 @@ app = FastAPI(
 
 add_routes(
     app,
-    composed_chain,
+    composed_chain_with_lambda,
     path="/bedrock",
 )
 
