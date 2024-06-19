@@ -11,7 +11,7 @@ from langserve import add_routes
 system_template = "与えられた {特徴}　の人物に対して、考察しどんなキャラクターかを箇条書きで列挙してください:"
 prompt_template = ChatPromptTemplate.from_messages([
     ('system', system_template),
-    ('user', '名前；{名前}性別：{性別}好きなもの：{好きなもの}嫌いなもの：{嫌いなもの}')
+    ('user', '名前；{名前}、性別：{性別}、好きなもの：{好きなもの}、嫌いなもの：{嫌いなもの}')
 ])
 
 # 1. Create prompt template2
