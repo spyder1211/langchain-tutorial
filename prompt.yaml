@@ -1,0 +1,17 @@
+_type: prompt
+input_types: {}
+input_variables:
+- context
+metadata: null
+name: null
+output_parser: null
+partial_variables: {}
+tags: null
+template: 'Answer in Japanese the question based only on the following context:
+
+
+  {context}
+
+  '
+template_format: f-string
+validate_template: false

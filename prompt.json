@@ -1,0 +1,15 @@
+{
+    "name": null,
+    "input_variables": [
+        "context"
+    ],
+    "input_types": {},
+    "output_parser": null,
+    "partial_variables": {},
+    "metadata": null,
+    "tags": null,
+    "template": "Answer in Japanese the question based only on the following context:\n\n{context}\n",
+    "template_format": "f-string",
+    "validate_template": false,
+    "_type": "prompt"
+}

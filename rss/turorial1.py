@@ -2,7 +2,7 @@ from langchain_community.document_loaders import RSSFeedLoader
 from langchain.indexes import VectorstoreIndexCreator
 from langchain_community.vectorstores.inmemory import InMemoryVectorStore
 from langchain_openai import OpenAIEmbeddings
-from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.prompts import ChatPromptTemplate,PromptTemplate
 from langchain_aws import ChatBedrock
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_core.output_parsers import StrOutputParser
@@ -34,6 +34,9 @@ template = """Answer in Japanese the question based only on the following contex
 {context}
 """
 prompt = ChatPromptTemplate.from_template(template)
+prompt_save = PromptTemplate.from_template(template)
+prompt_save.save("prompt.json")
+prompt_save.save("prompt.yaml")
 
 model = ChatBedrock(
     region_name='us-east-1',
