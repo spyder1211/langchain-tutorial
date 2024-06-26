@@ -3,7 +3,7 @@ from langchain.indexes import VectorstoreIndexCreator
 from langchain_community.vectorstores.inmemory import InMemoryVectorStore
 from langchain_openai import OpenAIEmbeddings
 from langchain_core.prompts import ChatPromptTemplate,PromptTemplate
-from langchain_aws import ChatBedrock
+from langchain_aws import ChatBedrock, BedrockEmbeddings
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_core.output_parsers import StrOutputParser
 from langserve import add_routes
@@ -22,7 +22,7 @@ text_splitter = CharacterTextSplitter(
 
 index = VectorstoreIndexCreator(
     vectorstore_cls=InMemoryVectorStore,
-    embedding=OpenAIEmbeddings(),
+    embedding=BedrockEmbeddings(),
     text_splitter=text_splitter,
 ).from_loaders([loader])
 
@@ -34,9 +34,6 @@ template = """Answer in Japanese the question based only on the following contex
 {context}
 """
 prompt = ChatPromptTemplate.from_template(template)
-prompt_save = PromptTemplate.from_template(template)
-prompt_save.save("prompt.json")
-prompt_save.save("prompt.yaml")
 
 model = ChatBedrock(
     region_name='us-east-1',
@@ -54,7 +51,7 @@ app = FastAPI(
 add_routes(
     app,
     chain,
-    path="/bedrock",
+    path="/rss",
 )
 
 if __name__ == "__main__":
