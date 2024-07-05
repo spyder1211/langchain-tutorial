@@ -11,9 +11,10 @@ from fastapi import FastAPI
 from langchain.chains import create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.pydantic_v1 import BaseModel
+from langchain_core.runnables import RunnablePassthrough
 
 # loader = SitemapLoader(web_path="https://c-table.co.jp/sitemap.xml")
-loader = SitemapLoader(web_path="https://furusato-nippon.com/sitemap.xml")
+loader = SitemapLoader(web_path="https://www.ushin-net.co.jp/sitemap.xml")
 
 text_splitter = CharacterTextSplitter(
     separator = "\n",
@@ -46,7 +47,8 @@ model = ChatBedrock(
 )
 
 # chain = retriever | prompt | model | StrOutputParser()
-chain = create_retrieval_chain(retriever, create_stuff_documents_chain(model, prompt))
+# chain = create_retrieval_chain(retriever, create_stuff_documents_chain(model, prompt))
+chain = {"context": retriever, "input": RunnablePassthrough()} | prompt | model | StrOutputParser()
 
 app = FastAPI(
     title="LangChain Server",
@@ -59,8 +61,8 @@ class ChainInput(BaseModel):
 
 add_routes(
     app,
-    # chain,
-    chain.with_types(input_type=ChainInput),
+    chain,
+    # chain.with_types(input_type=ChainInput),
     path="/sitemap",
 )
 
