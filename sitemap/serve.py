@@ -12,7 +12,8 @@ from langchain.chains import create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.pydantic_v1 import BaseModel
 
-loader = SitemapLoader(web_path="https://c-table.co.jp/sitemap.xml")
+# loader = SitemapLoader(web_path="https://c-table.co.jp/sitemap.xml")
+loader = SitemapLoader(web_path="https://furusato-nippon.com/sitemap.xml")
 
 text_splitter = CharacterTextSplitter(
     separator = "\n",
