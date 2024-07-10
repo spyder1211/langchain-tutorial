@@ -11,9 +11,7 @@ model = ChatBedrock(
     model_id='anthropic.claude-3-haiku-20240307-v1:0',
 )
 
-message = HumanMessage(content="githubのpythonのライブラリでstart数が多いものは何ですか？")
-
 model_with_tools = model.bind_tools(tools)
-output = model_with_tools.invoke([message])
-print(f"ContentString: {output.content}")
-print(f"ToolCalls: {output.tool_calls}")
+response = model_with_tools.invoke([HumanMessage(content="What's the weather in SF?")])
+print(f"ContentString: {response.content}")
+print(f"ToolCalls: {response.tool_calls}")

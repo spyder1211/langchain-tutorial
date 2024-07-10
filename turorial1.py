@@ -14,5 +14,4 @@ messages = [
 ]
 
 chain = model | parser
-output = chain.invoke(messages)
-print(output)
+chain.invoke(messages)

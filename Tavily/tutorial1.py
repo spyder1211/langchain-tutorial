@@ -15,5 +15,5 @@ agent_executor = AgentExecutor(
     tools=tools,
     verbose=True,
 )
-output = agent_executor.invoke({"input": "githubのpythonのライブラリでstart数が多いものは何ですか？"})
+output = agent_executor.invoke({"input": "githubのpythonのライブラリでstar数が多いものは何ですか？"})
 print(output)
