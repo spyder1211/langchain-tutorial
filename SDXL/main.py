@@ -43,7 +43,6 @@ Revise the following image generation prompt to optimize it for Stable Diffusion
     6. Place more important elements at the beginning of the prompt.
     7. Use weights (e.g., (keyword:1.2)) for emphasizing certain elements if necessary.
     8. If the original prompt is not in English, translate it to English.
-    9. please do not use the '(keyword:1.2)' format in the prompt.
     Your goal is to create a clear, detailed prompt that will result in a high-quality image generation with Stable Diffusion.
     Please provide your response in the following JSON format:
     {{"revised_prompt":"<Revised Prompt>"}}
@@ -89,7 +88,14 @@ def generate_image_from_prompt(prompt, revision_no ,model_params={}):
     return f"{dt_str}.png"
 
 if __name__ == "__main__":
-    prompt = "白人で金髪で目が大きな美しい女性のアップの画像"
+    prompt = """
+	•	若い女性が教室で勉強している様子
+	•	制服を着ており、ネイビーブルーのスカートと白いブラウスが特徴
+	•	彼女は机に座っており、ペンを口に咥えている
+	•	彼女の前にはノートや文房具が散らばっている
+	•	窓から自然光が差し込む明るい教室の雰囲気
+    •	少しセクシーで、魅力的な雰囲気を持っている
+"""
     max_prompt_revisions = 2
 
     start_timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
